@@ -3,25 +3,21 @@
 startCommand:
   type: stdio
   configSchema:
-    # JSON Schema defining the configuration options for the MCP
+    # JSON Schema defining the configuration options for the MCP.
     type: object
     required:
-      - linearApiKey
+      - linearApiToken
     properties:
-      linearApiKey:
+      linearApiToken:
         type: string
-        description: Your Linear API key. Required for Linear API access.
-      logLevel:
-        type: string
-        description: Log level (debug, info, warn, error)
-        enum: ['debug', 'info', 'warn', 'error']
-        default: 'info'
-  commandFunction: |
+        description: Your Linear API token for authentication
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
     (config) => ({
       command: 'node',
-      args: ['dist/index.js'],
-      env: {
-        LINEAR_API_KEY: config.linearApiKey,
-        LOG_LEVEL: config.logLevel || 'info'
-      }
+      args: ['dist/index.js', '--token', config.linearApiToken],
+      env: process.env
     })
+  exampleConfig:
+    linearApiToken: sk_test_your_linear_api_token
