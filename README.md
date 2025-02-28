@@ -1,91 +1,7 @@
-# Linear MCP Server
+# Linear-MCP-Server
+[![smithery badge](https://smithery.ai/badge/@emmett-deen/linear-mcp-server)](https://smithery.ai/server/@emmett-deen/linear-mcp-server)
 
-A Model Context Protocol (MCP) server implementation for the Linear GraphQL API that enables AI assistants to interact with Linear project management systems.
-
-![Linear MCP Server](https://img.shields.io/badge/MCP-Linear-blue)
-[![npm version](https://img.shields.io/npm/v/@emmett.deen/linear-mcp-server.svg)](https://www.npmjs.com/package/@emmett.deen/linear-mcp-server)
-[![Smithery](https://img.shields.io/badge/Smithery-Compatible-brightgreen)](https://smithery.ai/server/linear)
-
-## Features
-
-- Access to Linear's GraphQL API through MCP tools
-- Authentication via Linear API key
-- Retrieve and modify data related to users, teams, projects, and issues
-- Create, update and comment on issues
-- Add and remove labels
-- Create projects
-- Comprehensive documentation of available tools
-
-## Installation
-
-### Installing via Smithery (Recommended)
-
-To install Linear MCP Server for Claude Desktop automatically via Smithery:
-
-```bash
-npx -y @smithery/cli install @emmett.deen/linear-mcp-server --client claude
-```
-
-### Manual Configuration
-
-After installation, add the following to your MCP settings file:
-
-```json
-{
-  "mcpServers": {
-    "linear": {
-      "command": "npx",
-      "args": ["-y", "@emmett.deen/linear-mcp-server"],
-      "env": {
-        "LINEAR_API_KEY": "your_linear_api_key_here"
-      }
-    }
-  }
-}
-```
-
-### Client-Specific Configuration Locations
-
-- Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Claude VSCode Extension: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
-- GoMCP: `~/.config/gomcp/config.yaml`
-
-### Manual Installation
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/Linear-MCP-Server.git
-cd Linear-MCP-Server
-```
-
-2. Install dependencies
-
-```bash
-npm install
-```
-
-3. Build the project
-
-```bash
-npm run build
-```
-
-4. Create a `.env` file with your Linear API token
-
-```
-LINEAR_API_KEY=your_linear_api_key_here
-```
-
-5. Start the server
-
-```bash
-npm start
-```
-
-## Available Tools
-
-See [TOOLS.md](TOOLS.md) for a complete list of available tools and planned features.
+A Model Context Protocol (MCP) server implementation for the Linear GraphQL API that enables Claude to interact with Linear project management systems through user tokens.
 
 ## Overview
 
@@ -108,11 +24,19 @@ The server uses Linear's GraphQL API and authenticates via user tokens (not OAut
 - NPM or Yarn
 - Linear API token
 
+### Installing via Smithery
+
+To install linear-mcp-server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@emmett-deen/linear-mcp-server):
+
+```bash
+npx -y @smithery/cli install @emmett-deen/linear-mcp-server --client claude
+```
+
 ### Installation
 
 ```bash
 # Install globally
-npm install -g @emmett.deen/linear-mcp-server
+npm install -g linear-mcp-server
 
 # Or clone and install locally
 git clone https://github.com/yourusername/Linear-MCP-Server.git
@@ -172,6 +96,18 @@ Alternatively, manually edit the config file:
 6. Restart Claude Desktop (quit completely and reopen)
 7. You should now see Linear MCP Server available as a tool in Claude
 
+## Available Tools
+
+The Linear MCP Server provides a comprehensive set of tools to interact with the Linear API. For a detailed list of all implemented tools and planned future additions, see the [TOOLS.md](./TOOLS.md) document.
+
+Some key tools include:
+
+- Get information about users, teams, projects, and issues
+- Create and update issues
+- Search for issues with filters
+- Create and manage projects
+- Add comments to issues
+
 ## Example Claude Prompts
 
 Once connected to Claude Desktop, you can use prompts like:
@@ -206,58 +142,9 @@ To add new tools to the server:
 2. Make sure to follow the established code structure in the `src/` directory
 3. Update the documentation to reflect your changes
 
-## Developing and Contributing
+## Contributing
 
-### Setup Development Environment
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/Linear-MCP-Server.git
-cd Linear-MCP-Server
-```
-
-2. Install dependencies
-
-```bash
-npm install
-```
-
-3. Start in development mode
-
-```bash
-npm run dev
-```
-
-### Publishing to npm
-
-To publish this package to npm:
-
-1. Update the version in package.json
-
-```bash
-npm version patch  # or minor, or major
-```
-
-2. Build the project
-
-```bash
-npm run build
-```
-
-3. Make sure you've already logged in to npm
-
-```bash
-npm login
-```
-
-4. Publish to npm
-
-```bash
-npm publish --access public
-```
-
-5. For Smithery registry, you'll need to work with the Smithery team to get your server listed in their catalog.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
